@@ -6,6 +6,7 @@ class ToDoList extends Component {
     render() {
         return (
             <div>
+                <span>ToDoList</span>
                 <ToDoGroupContainer />
                 <ToDoGeneratorContainer />
             </div>
