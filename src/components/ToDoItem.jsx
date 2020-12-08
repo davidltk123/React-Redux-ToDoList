@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 
 class ToDoItem extends Component {
+
+    deleteToDo = () => {
+        this.props.deleteToDo(this.props.todo.id);
+    }
+
     render() {
         return (
             <div>
                 <span>{this.props.todo.content}</span>
-                <button>x</button>
+                <button onClick={this.deleteToDo}>x</button>
             </div>
         );
     }
