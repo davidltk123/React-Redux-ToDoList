@@ -9,9 +9,9 @@ const toDoList = (state = [], action) => {
         case DELETE_TO_DO:
             return state.filter((todo) => todo.id !== action.payload)
         case TOGGLE_COMPLETE:
-            const index = state.findIndex(todo => todo.id === action.payload);
-            state[index].complete = !state[index].complete;
-            return state;
+            return state.map((todo) => {
+                return action.payload===todo.id ? {...todo, complete: !todo.complete}: todo;
+            });
         default:
             return state;
     }
