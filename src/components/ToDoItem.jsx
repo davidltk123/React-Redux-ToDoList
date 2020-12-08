@@ -6,10 +6,14 @@ class ToDoItem extends Component {
         this.props.deleteToDo(this.props.todo.id);
     }
 
+    toggleComplete = () => {
+        this.props.toggleComplete(this.props.todo.id);
+    }
+
     render() {
         return (
             <div>
-                <span>{this.props.todo.content}</span>
+                <span onClick={this.toggleComplete} style={this.props.todo.complete ? { textDecoration: "line-through" } : {}}>{this.props.todo.content}</span>
                 <button onClick={this.deleteToDo}>x</button>
             </div>
         );

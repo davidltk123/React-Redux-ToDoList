@@ -8,11 +8,10 @@ const toDoList = (state = [], action) => {
             return [...state, { id: uuidv4(), content: action.payload, complete: false }];
         case DELETE_TO_DO:
             return state.filter((todo) => todo.id !== action.payload)
-        case TOGGLE_COMPLETE:{
-            const index = state.findIndex(action.payload);
+        case TOGGLE_COMPLETE:
+            const index = state.findIndex(todo => todo.id === action.payload);
             state[index].complete = !state[index].complete;
             return state;
-        } 
         default:
             return state;
     }
