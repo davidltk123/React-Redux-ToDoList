@@ -36,3 +36,44 @@
     transform: rotate(360deg);
   }
 }
+
+#navbar-title{
+  color: white; 
+}
+
+.menu{
+  background-color: #3399ff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.menu-item {
+  float:right;
+  color: white;
+}
+
+.navlink-item{
+  color:white !important;
+  font-size: larger;
+}
+
+.ant-divider{
+  font-size: larger;
+}
+
+.toDoList, .doneList, .toDoGenerator{
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 2%;
+}
+
+.ant-input-affix-wrapper{
+  width:90%;
+}
+
+.deleteButton{
+  position: absolute;
+  right: 10px;
+  margin-top: -5px;
+}
+
+

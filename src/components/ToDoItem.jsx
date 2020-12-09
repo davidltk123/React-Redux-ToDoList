@@ -21,7 +21,7 @@ class ToDoItem extends Component {
         return (
             <div>
                 <span onClick={this.toggleComplete} style={this.props.todo.complete ? { textDecoration: "line-through" } : {}}>{this.props.todo.content}</span>
-                <Button type="primary" icon={<CloseOutlined />} onClick={this.deleteToDo}/>
+                <Button className="deleteButton" type="primary" icon={<CloseOutlined />} onClick={this.deleteToDo}/>
             </div>
         );
     }

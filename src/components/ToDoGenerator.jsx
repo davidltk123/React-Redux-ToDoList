@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { addNewToDo } from "../apis/todos"
 import { Button, Input } from 'antd';
 class ToDoGenerator extends Component {
@@ -28,9 +27,8 @@ class ToDoGenerator extends Component {
 
     render() {
         return (
-            <div>
-                {/* <input type="text" value={this.state.content} onChange={this.onChange} placeholder="input a new todo here..." /> */}
-                <Input placeholder="input a new todo here..." value={this.state.content} allowClear onChange={this.onChange} />
+            <div className="toDoGenerator">
+                <Input id="myinput" placeholder="input a new todo here..." value={this.state.content} allowClear onChange={this.onChange} />
                 <Button type="primary" onClick={this.addToDo} >add</Button>
             </div>
         );

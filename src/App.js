@@ -3,12 +3,12 @@ import ToDoList from './components/ToDoList'
 import NotFound from './components/NotFound'
 import DoneToDoListContainer from './containers/DoneToDoListContainer'
 import { HashRouter, Switch, Route } from 'react-router-dom';
-import Navigation from './components/Navigation';
+import Navigation from './components/Navigation';;
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
         <HashRouter>
           <Navigation />
           <Switch>
@@ -17,7 +17,6 @@ function App() {
             <Route component={NotFound}></Route>
           </Switch>
         </HashRouter>
-      </header>
     </div>
   );
 }

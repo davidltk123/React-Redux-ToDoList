@@ -4,7 +4,7 @@ import ToDoItem from "../components/ToDoItem";
 
 const mapDispatchToProps = (dispatch) => ({
     deleteToDo: (id) => { dispatch(deleteToDo(id)) },
-    toggleComplete: (id) => { dispatch(toggleComplete(id)) }
+    toggleComplete: (todo) => { dispatch(toggleComplete(todo)) }
 });
 
 const ToDoItemContainer = connect(null, mapDispatchToProps)(ToDoItem);

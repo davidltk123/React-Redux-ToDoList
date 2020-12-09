@@ -15,3 +15,7 @@ export const deleteTodo = (id) => {
 export const setComplete = (id, complete) => {
     return api.put("/todos/"+ id, {complete});
 };
+
+export const updateLabel = (id, labels) => {
+    return api.put("/todos/"+ id, {labels});
+}
