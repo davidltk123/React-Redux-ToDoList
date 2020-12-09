@@ -2,17 +2,15 @@ import './App.css';
 import ToDoList from './components/ToDoList'
 import NotFound from './components/NotFound'
 import DoneToDoListContainer from './containers/DoneToDoListContainer'
-import { HashRouter, NavLink, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <HashRouter>
-          <ul>
-            <li><NavLink to="/">go to list page</NavLink></li>
-            <li><NavLink to="/done">go to done page</NavLink></li>
-          </ul>
+          <Navigation />
           <Switch>
             <Route exact path="/done" component={DoneToDoListContainer}></Route>
             <Route exact path="/" component={ToDoList}></Route>

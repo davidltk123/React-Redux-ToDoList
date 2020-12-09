@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { deleteTodo, setComplete } from "../apis/todos"
+import { Button } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
 
 class ToDoItem extends Component {
 
     deleteToDo = () => {
-        deleteTodo(this.props.todo.id).then(() => {
-            this.props.deleteToDo(this.props.todo.id);
+        deleteTodo(this.props.todo.id).then((response) => {
+            this.props.deleteToDo(response.data.id);
         });
     }
 
     toggleComplete = () => {
-        setComplete(this.props.todo.id, !this.props.todo.complete).then(() => {
-            this.props.toggleComplete(this.props.todo.id);
+        setComplete(this.props.todo.id, !this.props.todo.complete).then((response) => {
+            this.props.toggleComplete(response.data.id);
         })
     }
 
@@ -19,7 +21,7 @@ class ToDoItem extends Component {
         return (
             <div>
                 <span onClick={this.toggleComplete} style={this.props.todo.complete ? { textDecoration: "line-through" } : {}}>{this.props.todo.content}</span>
-                <button onClick={this.deleteToDo}>x</button>
+                <Button type="primary" icon={<CloseOutlined />} onClick={this.deleteToDo}/>
             </div>
         );
     }
