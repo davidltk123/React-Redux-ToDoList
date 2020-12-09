@@ -7,3 +7,7 @@ export const getToDoList = () => {
 export const addNewToDo = (content) => {
     return api.post("/todos", { content });
 };
+
+export const deleteTodo = (id) => {
+    return api.delete("/todos/"+ id);
+};

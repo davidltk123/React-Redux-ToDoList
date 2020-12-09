@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import {deleteTodo} from "../apis/todos"
 
 class ToDoItem extends Component {
 
     deleteToDo = () => {
-        this.props.deleteToDo(this.props.todo.id);
+        deleteTodo(this.props.todo.id).then(()=>{
+            this.props.deleteToDo(this.props.todo.id);
+        });
     }
 
     toggleComplete = () => {
