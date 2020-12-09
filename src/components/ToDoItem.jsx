@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {deleteTodo} from "../apis/todos"
+import {deleteTodo, setComplete} from "../apis/todos"
 
 class ToDoItem extends Component {
 
@@ -10,7 +10,9 @@ class ToDoItem extends Component {
     }
 
     toggleComplete = () => {
-        this.props.toggleComplete(this.props.todo.id);
+        setComplete(this.props.todo.id, !this.props.todo.complete).then(()=> {
+            this.props.toggleComplete(this.props.todo.id);
+        })
     }
 
     render() {
