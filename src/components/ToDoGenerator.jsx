@@ -17,6 +17,9 @@ class ToDoGenerator extends Component {
 
     addToDo = () => {
         this.props.addToDo(this.state.content);
+        this.setState({
+            content: '',
+        });
     }
 
     render() {
