@@ -1,5 +1,6 @@
 import './App.css';
 import ToDoList from './components/ToDoList'
+import NotFound from './components/NotFound'
 import DoneToDoListContainer from './containers/DoneToDoListContainer'
 import { HashRouter, NavLink, Switch, Route } from 'react-router-dom';
 
@@ -13,8 +14,9 @@ function App() {
             <li><NavLink to="/done">go to done page</NavLink></li>
           </ul>
           <Switch>
-            <Route path="/done" component={DoneToDoListContainer}></Route>
-            <Route path="/" component={ToDoList}></Route>
+            <Route exact path="/done" component={DoneToDoListContainer}></Route>
+            <Route exact path="/" component={ToDoList}></Route>
+            <Route component={NotFound}></Route>
           </Switch>
         </HashRouter>
       </header>
