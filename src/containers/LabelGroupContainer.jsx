@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
-import { addLabel,removeLabel } from "../action";
+import { updateLabels } from "../action";
 import LabelGroup from "../components/LabelGroup";
 
 const mapDispatchToProps = (dispatch) => ({
-    removeLabel: (todo) => {dispatch(removeLabel(todo))},
-    addLabel: (todo) => {dispatch(addLabel(todo))},
+    updateLabels: (todo) => {dispatch(updateLabels(todo))}
 })
 
 const LabelGroupContainer = connect(null, mapDispatchToProps)(LabelGroup);

@@ -16,7 +16,7 @@ class LabelGroup extends Component {
         const tags = this.state.tags.filter(tag => tag !== removedTag);
         this.setState({ tags });
         updateLabel(this.props.todo.id, { ...this.props.todo, labels: tags }).then((response) => {
-            this.props.removeLabel(response.data);
+            this.props.updateLabels(response.data)
         })
     };
 
@@ -40,8 +40,29 @@ class LabelGroup extends Component {
             inputValue: '',
         });
         updateLabel(this.props.todo.id, { ...this.props.todo, labels: tags }).then((response) => {
-            this.props.addLabel(response.data);
+            this.props.updateLabels(response.data);
         })
+    };
+
+    handleEditInputChange = e => {
+        this.setState({ editInputValue: e.target.value });
+    };
+
+    handleEditInputConfirm = () => {
+        this.setState(({ tags, editInputIndex, editInputValue }) => {
+            const newTags = [...tags];
+            newTags[editInputIndex] = editInputValue;
+
+            updateLabel(this.props.todo.id, { ...this.props.todo, labels: newTags }).then((response) => {
+                this.props.updateLabels(response.data);
+            })
+
+            return {
+                tags: newTags,
+                editInputIndex: -1,
+                editInputValue: '',
+            };
+        });
     };
 
     saveInputRef = input => {
@@ -83,12 +104,10 @@ class LabelGroup extends Component {
                         >
                             <span
                                 onDoubleClick={e => {
-                                    if (index !== 0) {
-                                        this.setState({ editInputIndex: index, editInputValue: tag }, () => {
-                                            this.editInput.focus();
-                                        });
-                                        e.preventDefault();
-                                    }
+                                    this.setState({ editInputIndex: index, editInputValue: tag }, () => {
+                                        this.editInput.focus();
+                                    });
+                                    e.preventDefault();
                                 }}
                             >
                                 {isLongTag ? `${tag.slice(0, 20)}...` : tag}
