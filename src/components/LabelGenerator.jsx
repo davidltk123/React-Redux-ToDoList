@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tag, Input, Tooltip } from 'antd';
+import { Tag, Input, Tooltip, Select } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { updateLabel } from "../apis/todos"
 
@@ -8,6 +8,7 @@ class LabelGroup extends Component {
         tags: this.props.todo.labels,
         inputVisible: false,
         inputValue: '',
+        // inputColor: 'red',
         editInputIndex: -1,
         editInputValue: '',
     };
@@ -28,10 +29,15 @@ class LabelGroup extends Component {
         this.setState({ inputValue: e.target.value });
     };
 
+    // handleColorChange = value => {
+    //     this.setState({ inputColor: value });
+    // }
+
     handleInputConfirm = () => {
-        const { inputValue } = this.state;
+        const { inputValue} = this.state;
         let { tags } = this.state;
         if (inputValue && tags.indexOf(inputValue) === -1) {
+            // tags = [...tags, {content: inputValue, color: inputColor}];
             tags = [...tags, inputValue];
         }
         this.setState({
@@ -74,6 +80,8 @@ class LabelGroup extends Component {
     };
 
     render() {
+        const { Option } = Select;
+
         const { tags, inputVisible, inputValue, editInputIndex, editInputValue } = this.state;
         return (
             <>
@@ -123,20 +131,31 @@ class LabelGroup extends Component {
                         );
                 })}
                 {inputVisible && (
-                    <Input
-                        ref={this.saveInputRef}
-                        type="text"
-                        size="small"
-                        className="tag-input"
-                        value={inputValue}
-                        onChange={this.handleInputChange}
-                        onBlur={this.handleInputConfirm}
-                        onPressEnter={this.handleInputConfirm}
-                    />
+                    <Input.Group compact size="large">
+                        <Input
+                            style={{ width: '50%' }}
+                            ref={this.saveInputRef}
+                            type="text"
+                            size="small"
+                            className="tag-input"
+                            value={inputValue}
+                            onChange={this.handleInputChange}
+                            // onBlur={this.handleInputConfirm}
+                            onPressEnter={this.handleInputConfirm}
+                        />
+                        <Select defaultValue="red" style={{ width: '30%' }}>
+                            <Option value="red">red</Option>
+                            <Option value="orange">orange</Option>
+                            <Option value="lime">lime</Option>
+                            <Option value="green">green</Option>
+                            <Option value="blue">blue</Option>
+                            <Option value="purple">purple</Option>
+                        </Select>
+                    </Input.Group>
                 )}
                 {!inputVisible && (
                     <Tag className="site-tag-plus" onClick={this.showInput}>
-                        <PlusOutlined /> New Tag
+                        <PlusOutlined /> New Label
                     </Tag>
                 )}
             </>

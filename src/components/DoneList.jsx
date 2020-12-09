@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { List, Divider } from 'antd';
-import LabelGroupContainer from '../containers/LabelGroupContainer';
+import LabelGroupContainer from '../containers/LabelGeneratorContainer';
 
 class DoneList extends Component {
     render() {

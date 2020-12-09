@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { deleteTodo, setComplete } from "../apis/todos"
 import { Button } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import LabelGroupContainer from '../containers/LabelGroupContainer';
+import LabelGroupContainer from '../containers/LabelGeneratorContainer';
 
 class ToDoItem extends Component {
 

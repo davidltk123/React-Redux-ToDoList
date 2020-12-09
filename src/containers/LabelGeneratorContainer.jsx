@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { updateLabels } from "../action";
-import LabelGroup from "../components/LabelGroup";
+import LabelGroup from "../components/LabelGenerator";
 
 const mapDispatchToProps = (dispatch) => ({
     updateLabels: (todo) => {dispatch(updateLabels(todo))}
