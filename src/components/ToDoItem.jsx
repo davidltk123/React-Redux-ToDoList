@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { deleteTodo, setComplete } from "../apis/todos"
 import { Button } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
+import LabelGroupContainer from '../containers/LabelGroupContainer';
 
 class ToDoItem extends Component {
 
@@ -12,7 +13,7 @@ class ToDoItem extends Component {
     }
 
     toggleComplete = () => {
-        setComplete(this.props.todo.id, !this.props.todo.complete).then((response) => {
+        setComplete(this.props.todo.id, {...this.props.todo, complete: !this.props.todo.complete }).then((response) => {
             this.props.toggleComplete(response.data);
         })
     }
@@ -22,6 +23,7 @@ class ToDoItem extends Component {
             <div>
                 <span onClick={this.toggleComplete} style={this.props.todo.complete ? { textDecoration: "line-through" } : {}}>{this.props.todo.content}</span>
                 <Button className="deleteButton" type="primary" icon={<CloseOutlined />} onClick={this.deleteToDo}/>
+                <div className="labelGroup"><LabelGroupContainer todo={this.props.todo}/></div>
             </div>
         );
     }
