@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import {deleteTodo, setComplete} from "../apis/todos"
+import { deleteTodo, setComplete } from "../apis/todos"
 
 class ToDoItem extends Component {
 
     deleteToDo = () => {
-        deleteTodo(this.props.todo.id).then(()=>{
+        deleteTodo(this.props.todo.id).then(() => {
             this.props.deleteToDo(this.props.todo.id);
         });
     }
 
     toggleComplete = () => {
-        setComplete(this.props.todo.id, !this.props.todo.complete).then(()=> {
+        setComplete(this.props.todo.id, !this.props.todo.complete).then(() => {
             this.props.toggleComplete(this.props.todo.id);
         })
     }
