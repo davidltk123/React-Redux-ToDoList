@@ -3,7 +3,7 @@ import { addToDo } from "../action"
 import ToDoGenerator from "../components/ToDoGenerator";
 
 const mapDispatchToProps = (dispatch) => ({
-    addToDo: (content) => {dispatch(addToDo(content))}
+    addToDo: (todoItem) => {dispatch(addToDo(todoItem))}
 })
 
 const ToDoGeneratorContainer = connect(null, mapDispatchToProps)(ToDoGenerator);
