@@ -13,7 +13,7 @@ class ToDoItem extends Component {
 
     toggleComplete = () => {
         setComplete(this.props.todo.id, !this.props.todo.complete).then((response) => {
-            this.props.toggleComplete(response.data.id);
+            this.props.toggleComplete(response.data);
         })
     }
 

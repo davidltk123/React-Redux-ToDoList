@@ -9,7 +9,7 @@ const toDoList = (state = [], action) => {
             return state.filter((todo) => todo.id !== action.payload);
         case TOGGLE_COMPLETE:
             return state.map((todo) => {
-                return action.payload === todo.id ? { ...todo, complete: !todo.complete } : todo;
+                return action.payload.id === todo.id ? action.payload : todo;
             });
         case INIT_TODOS:
             return action.payload;
