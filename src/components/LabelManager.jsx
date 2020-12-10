@@ -1,7 +1,7 @@
 import { Button, Input } from 'antd';
 import React, { Component } from 'react';
 import { getLabelList } from '../apis/labels';
-import { PlusOutlined  } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import LabelItemContainer from '../containers/LabelItemContainer';
 import { addNewLabel } from "../apis/labels"
 
@@ -26,7 +26,7 @@ class LabelManager extends Component {
     }
 
     addLabel = () => {
-        addNewLabel({content:this.state.content, color: '#a65959'}).then(response => {
+        addNewLabel({ content: this.state.content, color: '#a65959' }).then(response => {
             this.props.addLabel(response.data);
         });
         this.setState({
