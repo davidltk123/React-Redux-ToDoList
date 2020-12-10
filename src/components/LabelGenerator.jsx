@@ -2,31 +2,61 @@ import React, { Component } from 'react';
 import { Tag, Input, Tooltip, Menu, Dropdown, Button, Space } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { updateToDo } from "../apis/todos"
+import { getLabelList } from '../apis/labels';
+import LabelItemContainer from '../containers/LabelItemContainer';
 
-class LabelGroup extends Component {
-    menu = (
-        <Menu>
-            <Menu.Item>
-                    1st menu item
-            </Menu.Item>
-            <Menu.Item>
-                    2nd menu item
-            </Menu.Item>
-            <Menu.Item>
-                    3rd menu item
-            </Menu.Item>
-        </Menu>
-    );
+class LabelGenerator extends Component {
+
+    componentDidMount() {
+        getLabelList().then(response => {
+            this.props.initLabels(response.data);
+        });
+    }
+
+    addLabelToTodo = (newLabel) => {
+        const { todo } = this.props;
+        const labels = todo.labels;
+        updateToDo(todo.id, { ...todo, labels: [...labels, newLabel] }).then((response) => {
+            this.props.updateToDo(response.data);
+        })
+    }
+
+    removeLabelFromTodo = (removeLabel) => {
+        const { todo } = this.props;
+        const labels = todo.labels;
+        const filteredLabels = labels.filter(label => label !== removeLabel);
+        updateToDo(todo.id, { ...todo, labels: [...filteredLabels] }).then((response) => {
+            this.props.updateToDo(response.data);
+        })
+    }
 
     render() {
+        console.log(this.props.labelList)
+        const menuItems = this.props.labelList.map(label =>
+            <Menu.Item key={label.id} onClick={() => { this.addLabelToTodo(label)}} >{label.content}</Menu.Item>
+        );
+    
+        const menu = (
+            <Menu>
+                {menuItems}
+            </Menu>
+        );
+
+        const labelItems = this.props.todo.labels.map(label =>
+            <LabelItemContainer className="labelItem" key={label.id} label={label} remove={this.removeLabelFromTodo}/>
+        );
+
         return (
-            <Space direction="vertical">
-                <Space wrap>
-                    <Dropdown overlay={this.menu} placement="bottomCenter">
-                        <Button type="primary" icon={<PlusOutlined />}/>
-                    </Dropdown>
+            <div>
+                {labelItems}
+                <Space direction="vertical">
+                    <Space wrap>
+                        <Dropdown overlay={menu} placement="bottomCenter">
+                            <Button className="addButton" type="primary" icon={<PlusOutlined />} />
+                        </Dropdown>
+                    </Space>
                 </Space>
-            </Space>
+            </div>
         )
     }
 
@@ -136,4 +166,4 @@ class LabelGroup extends Component {
     // }
 }
 
-export default LabelGroup;
+export default LabelGenerator;

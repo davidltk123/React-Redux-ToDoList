@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { Tag } from 'antd';
 import { deleteLabel, updateLabel } from "../apis/labels"
+import { updateToDo } from "../apis/todos"
 class LabelItem extends Component {
 
     handleClose = () => {
-        deleteLabel(this.props.label.id).then((response) => {
-            this.props.deleteLabel(response.data.id);
-        });
+        this.props.remove(this.props.label);
     }
 
     render() {
-        console.log(this.props.label)
         const { content, color } = this.props.label;
         return (
             <div><Tag closable color={color}  onClose={this.handleClose}>{content}</Tag></div>

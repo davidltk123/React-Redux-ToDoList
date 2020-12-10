@@ -12,7 +12,7 @@ class ToDoGroup extends Component {
     }
 
     render() {
-        const { toDoList } = this.props;
+        const { toDoList, labelList } = this.props;
         return (
             // <div>
             //     {

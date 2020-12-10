@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { List, Divider } from 'antd';
-import LabelGroupContainer from '../containers/LabelGeneratorContainer';
+import LabelGeneratorContainer from '../containers/LabelGeneratorContainer';
 
 class DoneList extends Component {
     render() {
@@ -14,7 +14,7 @@ class DoneList extends Component {
                     renderItem={item => (
                         <List.Item>
                             <div>{item.content}</div>
-                            <div>{<LabelGroupContainer todo={item} />}</div>
+                            <div>{<LabelGeneratorContainer todo={item} />}</div>
                         </List.Item>
                     )}
                 />
