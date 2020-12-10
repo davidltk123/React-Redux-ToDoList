@@ -7,13 +7,14 @@ import LabelGeneratorContainer from '../containers/LabelGeneratorContainer';
 class ToDoItem extends Component {
 
     deleteToDo = () => {
-        deleteTodo(this.props.todo.id).then((response) => {
-            this.props.deleteToDo(response.data.id);
+        deleteTodo(this.props.todo.id).then(() => {
+            this.props.deleteToDo(this.props.todo.id);
         });
     }
 
     toggleComplete = () => {
-        updateToDo(this.props.todo.id, {...this.props.todo, complete: !this.props.todo.complete }).then((response) => {
+        const {todo} = this.props;
+        updateToDo(todo.id, {...todo, complete: !todo.complete, labelIds: todo.labels.map(label=>label.id) }).then((response) => {
             this.props.updateToDo(response.data);
         })
     }

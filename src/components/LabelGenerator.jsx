@@ -16,7 +16,7 @@ class LabelGenerator extends Component {
     addLabelToTodo = (newLabel) => {
         const { todo } = this.props;
         const labels = todo.labels;
-        updateToDo(todo.id, { ...todo, labels: [...labels, newLabel] }).then((response) => {
+        updateToDo(todo.id, { ...todo, labelIds: [...labels, newLabel.id] }).then((response) => {
             this.props.updateToDo(response.data);
         })
     }
@@ -25,13 +25,12 @@ class LabelGenerator extends Component {
         const { todo } = this.props;
         const labels = todo.labels;
         const filteredLabels = labels.filter(label => label !== removeLabel);
-        updateToDo(todo.id, { ...todo, labels: [...filteredLabels] }).then((response) => {
+        updateToDo(todo.id, { ...todo, labelIds: [...filteredLabels] }).then((response) => {
             this.props.updateToDo(response.data);
         })
     }
 
     render() {
-        console.log(this.props.labelList)
         const menuItems = this.props.labelList.map(label =>
             <Menu.Item key={label.id} onClick={() => { this.addLabelToTodo(label)}} >{label.content}</Menu.Item>
         );

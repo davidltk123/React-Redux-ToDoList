@@ -12,16 +12,8 @@ class ToDoGroup extends Component {
     }
 
     render() {
-        const { toDoList, labelList } = this.props;
+        const { toDoList} = this.props;
         return (
-            // <div>
-            //     {
-            //         toDoList.map(value =>
-            //             <ToDoItemContainer key={value.id} todo={value} />
-            //         )
-            //     }
-            // </div>
-
 
             <div className="toDoList">
                 <Divider id="testing">To Do List</Divider>
