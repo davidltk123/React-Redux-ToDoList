@@ -2,7 +2,7 @@ import { Button, Input, Card } from 'antd';
 import React, { Component } from 'react';
 import { getLabelList } from '../apis/labels';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
-import ManagableLabelItemContainer from '../containers/ManageableLabelItemContainer';
+import ManagableLabelItemContainer from '../containers/ManageableLabelGroupContainer';
 import { addNewLabel } from "../apis/labels"
 
 class LabelManager extends Component {
@@ -43,7 +43,6 @@ class LabelManager extends Component {
 
     render() {
         const { labelList } = this.props;
-        console.log(this.state.color);
 
         return (
             <div>
@@ -51,6 +50,7 @@ class LabelManager extends Component {
                     {/* {cardGridElem} */}
                     <ManagableLabelItemContainer labels={labelList}/>
                 </Card>
+
                 <div className="labelListForm">
                     <Input placeholder="input a new label here..." value={this.state.content} allowClear onChange={this.onTextChange} />
                     <Button type="primary" onClick={this.addLabel} >add</Button>

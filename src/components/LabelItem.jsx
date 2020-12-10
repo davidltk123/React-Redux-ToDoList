@@ -9,7 +9,7 @@ class LabelItem extends Component {
     render() {
         const { content, color } = this.props.label;
         return (
-            <div><Tag closable color={color}  onClose={this.handleClose}>{content}</Tag></div>
+            <Tag closable color={color}  onClose={this.handleClose}>{content}</Tag>
         );
     }
 }
