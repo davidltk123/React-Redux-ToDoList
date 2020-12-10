@@ -15,17 +15,17 @@ class LabelGenerator extends Component {
 
     addLabelToTodo = (newLabel) => {
         const { todo } = this.props;
-        const labels = todo.labels;
-        updateToDo(todo.id, { ...todo, labelIds: [...labels, newLabel.id] }).then((response) => {
+        const labelIds = todo.labels.map(label => label.id);
+        updateToDo(todo.id, { ...todo, labelIds: [...labelIds, newLabel.id] }).then((response) => {
             this.props.updateToDo(response.data);
         })
     }
 
     removeLabelFromTodo = (removeLabel) => {
         const { todo } = this.props;
-        const labels = todo.labels;
-        const filteredLabels = labels.filter(label => label !== removeLabel);
-        updateToDo(todo.id, { ...todo, labelIds: [...filteredLabels] }).then((response) => {
+        const filteredLabels = todo.labels.filter(label => label !== removeLabel);
+        const filteredLabelIds = filteredLabels.map(label => label.id);
+        updateToDo(todo.id, { ...todo, labelIds: [...filteredLabelIds] }).then((response) => {
             this.props.updateToDo(response.data);
         })
     }
