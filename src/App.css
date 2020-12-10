@@ -88,6 +88,25 @@
   color: white !important;
 }
 
+.ant-card, .labelListForm{
+  width:80%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.LabelManagerAddButon{
+  position: absolute;
+  right: 60px;
+  margin-top: -5px;
+}
+
+.colorPicker{
+  position: absolute;
+  right: 150px;
+}
+
+
+
 
 
 

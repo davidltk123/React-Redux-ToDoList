@@ -1,8 +1,8 @@
-import { Button, Input } from 'antd';
+import { Button, Input, Card } from 'antd';
 import React, { Component } from 'react';
 import { getLabelList } from '../apis/labels';
-import { PlusOutlined } from '@ant-design/icons';
-import LabelItemContainer from '../containers/LabelItemContainer';
+import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
+import ManagableLabelItem from '../components/ManagableLabelItem';
 import { addNewLabel } from "../apis/labels"
 
 class LabelManager extends Component {
@@ -10,6 +10,7 @@ class LabelManager extends Component {
         super(props);
         this.state = {
             content: '',
+            color:'#ff0000'
         }
     }
 
@@ -19,14 +20,20 @@ class LabelManager extends Component {
         });
     }
 
-    onChange = (event) => {
+    onTextChange = (event) => {
         this.setState({
             content: event.target.value,
         });
     }
 
+    onColorChange = (event) => {
+        this.setState({
+            color: event.target.value,
+        });
+    }
+
     addLabel = () => {
-        addNewLabel({ content: this.state.content, color: '#a65959' }).then(response => {
+        addNewLabel({ content: this.state.content, color: this.state.color }).then(response => {
             this.props.addLabel(response.data);
         });
         this.setState({
@@ -36,16 +43,19 @@ class LabelManager extends Component {
 
     render() {
         const { labelList } = this.props;
+        console.log(this.state.color);
 
         return (
             <div>
-                {
-                    labelList.map(value =>
-                        <LabelItemContainer key={value.id} label={value} />
-                    )
-                }
-                <Input placeholder="input a new todo here..." value={this.state.content} allowClear onChange={this.onChange} />
-                <Button type="primary" onClick={this.addLabel} >add</Button>
+                <Card title="Label List">
+                    {/* {cardGridElem} */}
+                    <ManagableLabelItem labels={labelList}/>
+                </Card>
+                <div className="labelListForm">
+                    <Input placeholder="input a new label here..." value={this.state.content} allowClear onChange={this.onTextChange} />
+                    <Button type="primary" onClick={this.addLabel} >add</Button>
+                    <input style={{marginLeft: '20px'}} type="color" value={this.state.color} onChange={this.onColorChange}/>
+                </div>
             </div>
         );
     }
