@@ -12,14 +12,6 @@ export const deleteTodo = (id) => {
     return api.delete("/todos/"+ id);
 };
 
-export const setComplete = (id, todo) => {
-    return api.put("/todos/"+ id, todo);
-};
-
-export const updateLabel = (id, todo) => {
-    return api.put("/todos/"+ id, todo);
-};
-
 export const updateToDo = (id, todo) => {
     return api.put("/todos/"+ id, todo);
 };
