@@ -9,8 +9,6 @@ class LabelGroup extends Component {
         inputVisible: false,
         inputValue: '',
         // inputColor: 'red',
-        editInputIndex: -1,
-        editInputValue: '',
     };
 
     handleClose = removedTag => {
@@ -50,27 +48,6 @@ class LabelGroup extends Component {
         })
     };
 
-    handleEditInputChange = e => {
-        this.setState({ editInputValue: e.target.value });
-    };
-
-    handleEditInputConfirm = () => {
-        this.setState(({ tags, editInputIndex, editInputValue }) => {
-            const newTags = [...tags];
-            newTags[editInputIndex] = editInputValue;
-
-            updateLabel(this.props.todo.id, { ...this.props.todo, labels: newTags }).then((response) => {
-                this.props.updateLabels(response.data);
-            })
-
-            return {
-                tags: newTags,
-                editInputIndex: -1,
-                editInputValue: '',
-            };
-        });
-    };
-
     saveInputRef = input => {
         this.input = input;
     };
@@ -82,25 +59,11 @@ class LabelGroup extends Component {
     render() {
         const { Option } = Select;
 
-        const { tags, inputVisible, inputValue, editInputIndex, editInputValue } = this.state;
+        const { tags, inputVisible, inputValue} = this.state;
         return (
             <>
                 {tags.map((tag, index) => {
-                    if (editInputIndex === index) {
-                        return (
-                            <Input
-                                ref={this.saveEditInputRef}
-                                key={tag}
-                                size="small"
-                                className="tag-input"
-                                value={editInputValue}
-                                onChange={this.handleEditInputChange}
-                                onBlur={this.handleEditInputConfirm}
-                                onPressEnter={this.handleEditInputConfirm}
-                            />
-                        );
-                    }
-
+              
                     const isLongTag = tag.length > 20;
 
                     const tagElem = (
@@ -110,14 +73,7 @@ class LabelGroup extends Component {
                             closable
                             onClose={() => this.handleClose(tag)}
                         >
-                            <span
-                                onDoubleClick={e => {
-                                    this.setState({ editInputIndex: index, editInputValue: tag }, () => {
-                                        this.editInput.focus();
-                                    });
-                                    e.preventDefault();
-                                }}
-                            >
+                            <span>
                                 {isLongTag ? `${tag.slice(0, 20)}...` : tag}
                             </span>
                         </Tag>
@@ -131,19 +87,19 @@ class LabelGroup extends Component {
                         );
                 })}
                 {inputVisible && (
-                    <Input.Group compact size="large">
+                    /*<Input.Group compact size="large">*/
                         <Input
-                            style={{ width: '50%' }}
+                            /*style={{ width: '50%' }}*/
                             ref={this.saveInputRef}
                             type="text"
                             size="small"
                             className="tag-input"
                             value={inputValue}
                             onChange={this.handleInputChange}
-                            // onBlur={this.handleInputConfirm}
+                            onBlur={this.handleInputConfirm}
                             onPressEnter={this.handleInputConfirm}
                         />
-                        <Select defaultValue="red" style={{ width: '30%' }}>
+                        /*<Select defaultValue="red" style={{ width: '30%' }}>
                             <Option value="red">red</Option>
                             <Option value="orange">orange</Option>
                             <Option value="lime">lime</Option>
@@ -151,7 +107,7 @@ class LabelGroup extends Component {
                             <Option value="blue">blue</Option>
                             <Option value="purple">purple</Option>
                         </Select>
-                    </Input.Group>
+                    </Input.Group>*/
                 )}
                 {!inputVisible && (
                     <Tag className="site-tag-plus" onClick={this.showInput}>
