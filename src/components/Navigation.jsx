@@ -13,6 +13,9 @@ class Navigation extends Component {
                 <Menu.Item className="menu-item" icon={<EditOutlined />}>
                     <NavLink className="navlink-item" to="/">Todo List</NavLink>
                 </Menu.Item>
+                <Menu.Item className="menu-item" icon={<EditOutlined />}>
+                    <NavLink className="navlink-item" to="/label">Label List</NavLink>
+                </Menu.Item>
             </Menu>
         );
     }
