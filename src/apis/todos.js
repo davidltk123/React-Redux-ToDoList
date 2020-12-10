@@ -20,4 +20,9 @@ export const updateLabel = (id, todo) => {
     return api.put("/todos/"+ id, todo);
 };
 
+export const updateToDo = (id, todo) => {
+    return api.put("/todos/"+ id, todo);
+};
+
+
 

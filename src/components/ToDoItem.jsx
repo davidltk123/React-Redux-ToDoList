@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { deleteTodo, setComplete } from "../apis/todos"
+import { deleteTodo, updateToDo } from "../apis/todos"
 import { Button } from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
-import LabelGroupContainer from '../containers/LabelGeneratorContainer';
+import { DeleteOutlined  } from '@ant-design/icons';
+import LabelGeneratorContainer from '../containers/LabelGeneratorContainer';
 
 class ToDoItem extends Component {
 
@@ -13,8 +13,8 @@ class ToDoItem extends Component {
     }
 
     toggleComplete = () => {
-        setComplete(this.props.todo.id, {...this.props.todo, complete: !this.props.todo.complete }).then((response) => {
-            this.props.toggleComplete(response.data);
+        updateToDo(this.props.todo.id, {...this.props.todo, complete: !this.props.todo.complete }).then((response) => {
+            this.props.updateToDo(response.data);
         })
     }
 
@@ -22,8 +22,8 @@ class ToDoItem extends Component {
         return (
             <div>
                 <span onClick={this.toggleComplete} style={this.props.todo.complete ? { textDecoration: "line-through" } : {}}>{this.props.todo.content}</span>
-                <Button className="deleteButton" type="primary" icon={<CloseOutlined />} onClick={this.deleteToDo}/>
-                <div className="labelGroup"><LabelGroupContainer todo={this.props.todo}/></div>
+                <Button className="deleteButton" type="primary" icon={<DeleteOutlined />} onClick={this.deleteToDo}/>
+                <div className="labelGenerator"><LabelGeneratorContainer todo={this.props.todo}/></div>
             </div>
         );
     }

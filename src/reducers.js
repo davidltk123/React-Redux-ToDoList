@@ -1,4 +1,4 @@
-import { ADD_TO_DO, DELETE_TO_DO, TOGGLE_COMPLETE, INIT_TODOS, UPDATE_LABELS } from './actionType'
+import { ADD_TO_DO, DELETE_TO_DO, INIT_TODOS, UPDATE_TODO } from './actionType'
 import { combineReducers } from "redux";
 
 const toDoList = (state = [], action) => {
@@ -7,11 +7,7 @@ const toDoList = (state = [], action) => {
             return [...state, action.payload];
         case DELETE_TO_DO:
             return state.filter((todo) => todo.id !== action.payload);
-        case TOGGLE_COMPLETE:
-            return state.map((todo) => {
-                return action.payload.id === todo.id ? action.payload : todo;
-            });
-        case UPDATE_LABELS:
+        case UPDATE_TODO:
             return state.map((todo) => {
                 return action.payload.id === todo.id ? action.payload : todo;
             });
