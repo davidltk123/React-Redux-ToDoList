@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tag, Input, Tooltip, Select } from 'antd';
+import { Tag, Input, Tooltip } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { updateToDo } from "../apis/todos"
 
@@ -60,8 +60,6 @@ class LabelGroup extends Component {
     hashColor = (str) => this.colorArray[this.hashString(str) % this.colorArray.length];
 
     render() {
-        // const { Option } = Select;
-
         const { tags, inputVisible, inputValue } = this.state;
         return (
             <>
@@ -91,9 +89,8 @@ class LabelGroup extends Component {
                         );
                 })}
                 {inputVisible && (
-                    /*<Input.Group compact size="large">*/
                     <Input
-                        /*style={{ width: '50%' }}*/
+                        // style={{ width: '50%' }}
                         ref={this.saveInputRef}
                         type="text"
                         size="small"
@@ -103,15 +100,6 @@ class LabelGroup extends Component {
                         onBlur={this.handleInputConfirm}
                         onPressEnter={this.handleInputConfirm}
                     />
-                    /*<Select defaultValue="red" style={{ width: '30%' }}>
-                        <Option value="red">red</Option>
-                        <Option value="orange">orange</Option>
-                        <Option value="lime">lime</Option>
-                        <Option value="green">green</Option>
-                        <Option value="blue">blue</Option>
-                        <Option value="purple">purple</Option>
-                    </Select>
-                </Input.Group>*/
                 )}
                 {!inputVisible && (
                     <Tag className="site-tag-plus" onClick={this.showInput}>
