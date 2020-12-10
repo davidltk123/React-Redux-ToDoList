@@ -5,13 +5,13 @@ export const getLabelList = () => {
 };
 
 export const addNewLabel = (label) => {
-    return api.post("/labels", { label });
+    return api.post("/labels", label);
 };
 
 export const deleteLabel = (id) => {
     return api.delete("/labels/"+ id);
 };
 
-export const updateLabelo = (id, label) => {
+export const updateLabel = (id, label) => {
     return api.put("/todos/"+ id, label);
 };

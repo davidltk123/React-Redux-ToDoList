@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { initLabels } from "../action";
+import { initLabels, addLabel } from "../action";
 import LabelManager from "../components/LabelManager";
 
 const mapStateToProps = (state) => ({
@@ -7,9 +7,10 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    initLabels: (labels) => { dispatch(initLabels(labels)) }
+    initLabels: (labels) => { dispatch(initLabels(labels)) },
+    addLabel: (label) => { dispatch(addLabel(label)) },
 })
 
-const LabelManagerContainer = connect(mapStateToProps,mapDispatchToProps)(LabelManager);
+const LabelManagerContainer = connect(mapStateToProps, mapDispatchToProps)(LabelManager);
 
 export default LabelManagerContainer;
