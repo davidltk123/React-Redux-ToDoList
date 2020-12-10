@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Tag } from 'antd';
-import { deleteLabel, updateLabel } from "../apis/labels"
-import { updateToDo } from "../apis/todos"
 class LabelItem extends Component {
 
     handleClose = () => {
