@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Button, Modal, Input, Badge, notification  } from 'antd';
 import { DeleteOutlined, SmileOutlined } from '@ant-design/icons';
-import { deleteLabel, updateLabel } from "../apis/labels";
 
 class ManagableLabelItem extends Component {
     
