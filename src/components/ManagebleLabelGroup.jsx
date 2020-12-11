@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { Card, Button, Modal, Input } from 'antd';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { deleteLabel, updateLabel } from "../apis/labels"
+import LabelItemContainer from '../containers/LabelItemContainer';
 
 class ManagebleLabelGroup extends Component {
 
     state = {
         modalVisible: false,
         content: '',
-        color: '#ff0000'
+        color: '#ff0000',
+        selectedLabel: null
     };
 
-    setModalVisible(modalVisible) {
-        this.setState({ modalVisible });
+    setModalVisible(modalVisible, label) {
+        this.setState({ modalVisible: true,  selectedLabel:label});
     }
 
     removeLabel = (label) => {
@@ -22,11 +24,16 @@ class ManagebleLabelGroup extends Component {
     }
 
     handleOk = () => {
-        this.setModalVisible(true);
+        const label = this.state.selectedLabel;
+        const updatedLabel = {id: label.id, content: this.state.content, color:this.state.color};
+        updateLabel(label.id, updatedLabel).then(response =>{
+            this.setState({ modalVisible: false});
+            this.props.updateLabel(response.data);
+        })
     }
 
     handleCancel = () => {
-        this.setModalVisible(false);
+        this.setState({ modalVisible: false});
     }
 
     onTextChange = (event) => {
@@ -54,8 +61,8 @@ class ManagebleLabelGroup extends Component {
                     title="Edit Label"
                     centered
                     visible={this.state.modalVisible}
-                    onOk={() => this.setModalVisible(false)}
-                    onCancel={() => this.setModalVisible(false)}
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
                 >
                     <Input style={{width: '80%'}} value={this.state.content} placeholder="Input your label here..." onChange={this.onTextChange} />
                     <input style={{height: '30px', marginLeft: '20px'}} value={this.state.color} type="color" onChange={this.onColorChange}/>
@@ -64,7 +71,7 @@ class ManagebleLabelGroup extends Component {
 
                 {this.props.labels.map(label =>
                     <Card.Grid key={label.id} style={gridStyle}>{label.content}
-                        <Button className="LabelManagerAddButon" type="primary" onClick={() => this.setModalVisible(true)}>add</Button>
+                        <Button className="LabelManagerAddButon" type="primary" onClick={() => this.setModalVisible(true, label)}>edit</Button>
                         <Button className="deleteButton" type="primary" icon={<DeleteOutlined />} onClick={() => { this.removeLabel(label) }} />
                     </Card.Grid >
                 )}

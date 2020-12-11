@@ -13,5 +13,5 @@ export const deleteLabel = (id) => {
 };
 
 export const updateLabel = (id, label) => {
-    return api.put("/todos/"+ id, label);
+    return api.put("/labels/"+ id, label);
 };
