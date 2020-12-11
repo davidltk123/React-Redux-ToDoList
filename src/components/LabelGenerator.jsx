@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tag, Input, Tooltip, Menu, Dropdown, Button, Space } from 'antd';
+import { Menu, Dropdown, Button, Space } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { updateToDo } from "../apis/todos"
 import { getLabelList } from '../apis/labels';

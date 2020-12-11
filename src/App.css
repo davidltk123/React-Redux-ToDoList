@@ -94,7 +94,13 @@
 
 .LabelManagerAddButon{
   position: absolute;
-  right: 60px;
+  right: 90px;
+  margin-top: -5px;
+}
+
+.LabelManagerDeleteButon{
+  position: absolute;
+  right: 40px;
   margin-top: -5px;
 }
 
@@ -103,6 +109,15 @@
   right: 150px;
 }
 
+.badge{
+  position: absolute;
+  right: 160px;
+}
+
+.ant-badge-status-dot{
+  width: 20px;
+  height: 20px;
+}
 
 
 

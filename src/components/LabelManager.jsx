@@ -1,7 +1,6 @@
 import { Button, Input, Card } from 'antd';
 import React, { Component } from 'react';
 import { getLabelList } from '../apis/labels';
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import ManagableLabelItemContainer from '../containers/ManageableLabelGroupContainer';
 import { addNewLabel } from "../apis/labels"
 
@@ -47,7 +46,6 @@ class LabelManager extends Component {
         return (
             <div>
                 <Card title="Label List">
-                    {/* {cardGridElem} */}
                     <ManagableLabelItemContainer labels={labelList}/>
                 </Card>
 

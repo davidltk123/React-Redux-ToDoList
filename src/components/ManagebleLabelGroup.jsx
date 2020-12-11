@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Card, Button, Modal, Input } from 'antd';
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Card, Button, Modal, Input, Badge, notification  } from 'antd';
+import { DeleteOutlined, SmileOutlined } from '@ant-design/icons';
 import { deleteLabel, updateLabel } from "../apis/labels"
-import LabelItemContainer from '../containers/LabelItemContainer';
 
 class ManagebleLabelGroup extends Component {
 
@@ -48,6 +47,15 @@ class ManagebleLabelGroup extends Component {
         });
     }
 
+    openNotification = () => {
+        notification.open({
+          message: 'Notification Title',
+          description:
+            'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+          icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+        });
+    };
+
     render() {
 
         const gridStyle = {
@@ -64,15 +72,16 @@ class ManagebleLabelGroup extends Component {
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                 >
-                    <Input style={{width: '80%'}} value={this.state.content} placeholder="Input your label here..." onChange={this.onTextChange} />
+                    <Input style={{width: '80%'}} value={this.state.content} placeholder="Input your label here..." onChange={this.onTextChange}/>
                     <input style={{height: '30px', marginLeft: '20px'}} value={this.state.color} type="color" onChange={this.onColorChange}/>
                 </Modal>
 
 
                 {this.props.labels.map(label =>
-                    <Card.Grid key={label.id} style={gridStyle}>{label.content}
+                    <Card.Grid hoverable={false} key={label.id} style={gridStyle}>{label.content}
+                        <Badge className="badge" color={label.color}/>
                         <Button className="LabelManagerAddButon" type="primary" onClick={() => this.setModalVisible(true, label)}>edit</Button>
-                        <Button className="deleteButton" type="primary" icon={<DeleteOutlined />} onClick={() => { this.removeLabel(label) }} />
+                        <Button className="LabelManagerDeleteButon" type="primary" icon={<DeleteOutlined />} onClick={() => { this.removeLabel(label) }} />
                     </Card.Grid >
                 )}
             </>

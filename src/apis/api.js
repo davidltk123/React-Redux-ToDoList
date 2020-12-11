@@ -5,4 +5,12 @@ const api = axios.create({
     baseURL: "http://localhost:8081/"
 });
 
+
+// api.interceptors.response.use(function (response) {
+//     return response;
+//   }, function (error) {
+//       console.log("here")
+//     return Promise.reject(error);
+// });
+
 export default api;
