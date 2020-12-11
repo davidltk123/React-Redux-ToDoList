@@ -1,7 +1,7 @@
 import { Button, Input, Card } from 'antd';
 import React, { Component } from 'react';
 import { getLabelList } from '../apis/labels';
-import ManagableLabelItemContainer from '../containers/ManageableLabelGroupContainer';
+import ManageableLabelGroupContainer from '../containers/ManageableLabelGroupContainer';
 import { addNewLabel } from "../apis/labels"
 
 class LabelManager extends Component {
@@ -46,7 +46,7 @@ class LabelManager extends Component {
         return (
             <div>
                 <Card title="Label List">
-                    <ManagableLabelItemContainer labels={labelList}/>
+                    <ManageableLabelGroupContainer labels={labelList}/>
                 </Card>
 
                 <div className="labelListForm">

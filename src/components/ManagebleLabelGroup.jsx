@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Card, Button, Modal, Input, Badge, notification  } from 'antd';
 import { DeleteOutlined, SmileOutlined } from '@ant-design/icons';
-import { deleteLabel, updateLabel } from "../apis/labels"
+import { deleteLabel, updateLabel } from "../apis/labels";
+import ManagableLabelItem from "../components/ManagableLabelItem";
 
 class ManagebleLabelGroup extends Component {
 
@@ -12,8 +13,8 @@ class ManagebleLabelGroup extends Component {
         selectedLabel: null
     };
 
-    setModalVisible(modalVisible, label) {
-        this.setState({ modalVisible: true,  selectedLabel:label});
+    setModalVisible = (modalVisible, label) => {
+        this.setState({ modalVisible: modalVisible,  selectedLabel:label});
     }
 
     removeLabel = (label) => {
@@ -78,11 +79,7 @@ class ManagebleLabelGroup extends Component {
 
 
                 {this.props.labels.map(label =>
-                    <Card.Grid hoverable={false} key={label.id} style={gridStyle}>{label.content}
-                        <Badge className="badge" color={label.color}/>
-                        <Button className="LabelManagerAddButon" type="primary" onClick={() => this.setModalVisible(true, label)}>edit</Button>
-                        <Button className="LabelManagerDeleteButon" type="primary" icon={<DeleteOutlined />} onClick={() => { this.removeLabel(label) }} />
-                    </Card.Grid >
+                    <ManagableLabelItem label={label} openModal={this.setModalVisible} removeLabel={this.removeLabel}/>
                 )}
             </>
         );
